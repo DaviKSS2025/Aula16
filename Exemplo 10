@@ -50,9 +50,10 @@ uniform vec2 u_mouse;
 
 void main() {
     vec2 st = gl_FragCoord.xy / u_resolution.xy;
-    float left = step(0.1, st.x); // Se x é maior que 0.1
-    float bottom = step(0.1, st.y); // Se y é maior que 0.1
-    vec3 color = vec3(left * bottom);
+    vec3 color = vec3(0.0);
+    vec2 bl = step(vec2(0.1), st); // Verifica se o ponto está no 
+    vec2 tr = step(vec2(0.1), 1.0 - st); // Verifica se o ponto está 
+    color = vec3(bl.x * bl.y * tr.x * tr.y);
     gl_FragColor = vec4(color, 1.0);
 }
 
